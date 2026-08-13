@@ -1,7 +1,15 @@
 package com.project.fitness.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,6 +17,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -30,11 +41,12 @@ public class User {
     )
     @JsonIgnore
     private List<Activity> activities = new ArrayList<>();
+
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     @JsonIgnore
-    private List<Recommendation> recommendation = new ArrayList<>();
+    private List<Recommendation> recommendations = new ArrayList<>();
 }
