@@ -17,8 +17,9 @@ public class ActivityService {
     private final UserRepository userRepository;
 
     public ActivityResponse trackActivity(ActivityRequest request) {
+
         User user = userRepository.findById(request.getUserId())
-                .orElseThrow(()-> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         Activity activity = Activity.builder()
                 .user(user)
@@ -35,7 +36,17 @@ public class ActivityService {
     }
 
     private ActivityResponse mapToResponse(Activity savedActivity) {
+
         ActivityResponse response = new ActivityResponse();
-        response.setId(response.getId())
+
+        response.setId(String.valueOf(savedActivity.getId()));
+        response.setUserId(String.valueOf(savedActivity.getUser().getId()));
+        response.setActivityType(savedActivity.getActivityType());
+        response.setDuration(savedActivity.getDuration());
+        response.setCaloriesBurned(savedActivity.getCaloriesBurned());
+        response.setStartTime(savedActivity.getStartTime());
+        response.setAdditionalMetrics(savedActivity.getAdditionalMetrics());
+
+        return response;
     }
 }

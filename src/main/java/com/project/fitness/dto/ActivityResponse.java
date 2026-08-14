@@ -1,4 +1,5 @@
 package com.project.fitness.dto;
+
 import com.project.fitness.model.ActivityType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +11,7 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class ActivityResponse {
-
 
     private String id;
     private String userId;
@@ -26,6 +25,4 @@ public class ActivityResponse {
     private LocalTime startTime;
     private LocalTime createTime;
     private LocalTime updateTime;
-
-
 }
